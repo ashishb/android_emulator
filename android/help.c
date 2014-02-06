@@ -1513,6 +1513,14 @@ help_selinux(stralloc_t* out)
 }
 
 static void
+help_imei(stralloc_t* out)
+{
+    PRINTF(
+    " Use -imei to specify a custom IMEI value for the device.\n"
+    );
+}
+
+static void
 help_force_32bit(stralloc_t* out)
 {
     PRINTF(

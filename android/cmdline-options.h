@@ -162,6 +162,8 @@ OPT_FLAG( force_32bit, "always use 32-bit emulator" )
 
 OPT_PARAM(selinux, "<disabled|permissive>", "Set SELinux to either disabled or permissive mode")
 
+OPT_PARAM(imei, "<imei>", "IMEI number for the device (must be 15 decimal digits).")
+
 #undef CFG_FLAG
 #undef CFG_PARAM
 #undef OPT_FLAG

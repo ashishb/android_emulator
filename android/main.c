@@ -61,6 +61,8 @@
 #include "android/framebuffer.h"
 #include "android/iolooper.h"
 
+#include "telephony/android_modem.h"
+
 AndroidRotation  android_framebuffer_rotation;
 
 #define  STRINGIFY(x)   _STRINGIFY(x)
@@ -956,6 +958,22 @@ int main(int argc, char **argv)
             derror("-selinux must be \"disabled\" or \"permissive\"");
             exit(1);
         }
+    }
+
+    if (opts->imei) {
+        // TODO(ashishb): Configure IMEI here.
+        if (strlen(opts->imei) != IMEI_LENGTH) {
+          derror("Incorrect IMEI length: %d", strlen(opts->imei));
+          exit(1);
+        }
+        int i;
+        for (i=0; opts->imei[i]; i++) {
+          if ((opts->imei[i] < '0') || (opts->imei[i] > '9')) {
+            derror("IMEI can have only decimal digits.");
+            exit(1);
+          }
+        }
+        strncpy(imei, opts->imei, IMEI_LENGTH + 1); 
     }
 
     if (opts->memory) {

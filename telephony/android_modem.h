@@ -15,6 +15,9 @@
 #include "sim_card.h"
 #include "sms.h"
 
+#define IMEI_LENGTH 15 // Excluding the '\0' char.
+char imei[IMEI_LENGTH + 1];
+
 /** MODEM OBJECT
  **/
 typedef struct AModemRec_*    AModem;
