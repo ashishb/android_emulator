@@ -1521,6 +1521,30 @@ help_imei(stralloc_t* out)
 }
 
 static void
+help_imsi(stralloc_t* out)
+{
+    PRINTF(
+    " Use -imsi to specify a custom IMSI value for the device.\n"
+    );
+}
+
+static void
+help_mcc(stralloc_t* out)
+{
+    PRINTF(
+    " Use -mcc to specify a custom MCC value for the device.\n"
+    );
+}
+
+static void
+help_mnc(stralloc_t* out)
+{
+    PRINTF(
+    " Use -mnc to specify a custom MNC value for the device.\n"
+    );
+}
+
+static void
 help_force_32bit(stralloc_t* out)
 {
     PRINTF(

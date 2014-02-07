@@ -13,6 +13,9 @@
 #include <string.h>
 #include <assert.h>
 #include <stdio.h>
+#include <stdlib.h>
+
+#include "telephony/android_modem.h"
 
 /* set ENABLE_DYNAMIC_RECORDS to 1 to enable dynamic records
  * for now, this is an experimental feature that needs more testing
@@ -329,7 +332,18 @@ asimcard_io( ASimCard  sim, const char*  cmd )
 #if ENABLE_DYNAMIC_RECORDS
     int  command, id, p1, p2, p3;
 #endif
-    static const struct { const char*  cmd; const char*  answer; } answers[] =
+    const char *mnc_length_reply;
+    if (strlen(mnc) == 3) {
+      mnc_length_reply = "+CRSM: 144,0,00000003";
+    } else if (strlen(mnc) == 2) {
+      mnc_length_reply = "+CRSM: 144,0,00000002";
+    } else {
+      // Lets not allow any other mnc length, the android Radio Interface Layer
+      // will not be able to handle it either.
+      printf("Weird MNC length: %zd in file %s, line %zd", strlen(mnc), __FILE__, __LINE__);
+      exit(1);
+    }
+    const struct { const char*  cmd; const char*  answer; } answers[] =
     {
         { "+CRSM=192,28436,0,0,15", "+CRSM: 144,0,000000146f1404001aa0aa01020000" },
         { "+CRSM=176,28436,0,0,20", "+CRSM: 144,0,416e64726f6964ffffffffffffffffffffffffff" },
@@ -353,7 +367,7 @@ asimcard_io( ASimCard  sim, const char*  cmd )
         { "+CRSM=178,28618,1,4,5",  "+CRSM: 144,0,0000000000" },
 
         { "+CRSM=192,28589,0,0,15", "+CRSM: 144,0,000000046fad04000aa0aa01020000" },
-        { "+CRSM=176,28589,0,0,4",  "+CRSM: 144,0,00000003" },
+        { "+CRSM=176,28589,0,0,4",  mnc_length_reply},
 
         { "+CRSM=192,28438,0,0,15", "+CRSM: 144,0,000000026f1604001aa0aa01020000" },
         { "+CRSM=176,28438,0,0,2",  "+CRSM: 144,0,0233" },

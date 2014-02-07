@@ -17,6 +17,12 @@
 
 #define IMEI_LENGTH 15 // Excluding the '\0' char.
 char imei[IMEI_LENGTH + 1];
+#define IMSI_LENGTH 15 // Excluding the '\0' char.
+char imsi[IMSI_LENGTH + 1];
+#define MCC_LENGTH 3 // Excluding the '\0' char.
+char mcc[MCC_LENGTH + 1];
+#define MNC_LENGTH 3 // Max length of MNC, excluding the '\0' char.
+char mnc[MNC_LENGTH + 1];
 
 /** MODEM OBJECT
  **/

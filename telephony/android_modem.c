@@ -492,7 +492,7 @@ amodem_reset( AModem  modem )
 
     strcpy( modem->operators[0].name[0], OPERATOR_HOME_NAME );
     strcpy( modem->operators[0].name[1], OPERATOR_HOME_NAME );
-    strcpy( modem->operators[0].name[2], OPERATOR_HOME_MCCMNC );
+    sprintf( modem->operators[0].name[2], "%s%s", mcc, mnc);
 
     modem->operators[0].status        = A_STATUS_AVAILABLE;
 
@@ -2440,7 +2440,7 @@ static const struct {
     { "A", NULL, handleAnswer },  /* answer the call */
     { "H", NULL, handleAnswer },  /* user is busy */
     { "!+VTS=", NULL, handleSetDialTone },
-    { "+CIMI", OPERATOR_HOME_MCCMNC "000000000", NULL },   /* request internation subscriber identification number */
+    { "+CIMI", imsi, NULL },   /* request internation subscriber identification number */
     { "+CGSN", imei, NULL },   /* request model version */
     { "+CUSD=2",NULL, NULL }, /* Cancel USSD */
     { "+COPS=0", NULL, handleOperatorSelection }, /* set network selection to automatic */

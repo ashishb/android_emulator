@@ -961,7 +961,6 @@ int main(int argc, char **argv)
     }
 
     if (opts->imei) {
-        // TODO(ashishb): Configure IMEI here.
         if (strlen(opts->imei) != IMEI_LENGTH) {
           derror("Incorrect IMEI length: %d", strlen(opts->imei));
           exit(1);
@@ -975,6 +974,58 @@ int main(int argc, char **argv)
         }
         strncpy(imei, opts->imei, IMEI_LENGTH + 1); 
     }
+
+  if (opts->imsi) {
+      if (strlen(opts->imsi) != IMSI_LENGTH) {
+        derror("Incorrect IMSI length: %d", strlen(opts->imsi));
+        exit(1);
+      }
+      int i;
+      for (i=0; opts->imsi[i]; i++) {
+        if ((opts->imsi[i] < '0') || (opts->imsi[i] > '9')) {
+          derror("IMEI can have only decimal digits.");
+          exit(1);
+        }
+      }
+
+      char s[MCC_LENGTH + MNC_LENGTH + 1];
+      snprintf(s, MCC_LENGTH + MNC_LENGTH + 1, "%s%s", opts->mcc, opts->mnc);
+      // Verify that IMSI has MNC followed by MCC.
+      if (strlen(s) < MCC_LENGTH + MNC_LENGTH - 1) {
+          derror("Please provide MCC and MNC.");
+          exit(1);
+      }
+      i = 0;
+      while(s[i]) {
+        if (opts->imsi[i] != s[i]) {
+          derror("IMSI does not start with MCCMNC.");
+          exit(1);
+        }
+        i++;
+      }
+
+      strncpy(imsi, opts->imsi, IMSI_LENGTH + 1); 
+  }
+
+  if (opts->mcc) {
+    if (strlen(opts->mcc) != MCC_LENGTH) {
+      derror("Incorrect MCC length: %d", strlen(opts->mcc));
+      exit(1);
+    }
+    strncpy(mcc, opts->mcc, MCC_LENGTH + 1);
+  } else {
+    strcpy(mcc, "310");  // The earlier default value.
+  }
+
+  if (opts->mnc) {
+    if ((strlen(opts->mnc) != MNC_LENGTH) && (strlen(opts->mnc) != MNC_LENGTH - 1)) {
+      derror("Incorrect MNC length: %d", strlen(opts->mnc));
+      exit(1);
+    }
+    strncpy(mnc, opts->mnc, MNC_LENGTH + 1);
+  } else {
+    strcpy(mnc, "260");  // The earlier default value.
+  }
 
     if (opts->memory) {
         char*  end;
