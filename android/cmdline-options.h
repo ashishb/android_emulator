@@ -166,6 +166,7 @@ OPT_PARAM(imei, "<imei>", "IMEI number for the device (must be 15 decimal digits
 OPT_PARAM(imsi, "<imsi>", "IMSI number for the device (must be 15 decimal digits).")
 OPT_PARAM(mcc, "<mcc>", "MCC number for the device (must be 3 decimal digits).")
 OPT_PARAM(mnc, "<mnc>", "MNC number for the device (must be 2 or 3 decimal digits).")
+OPT_PARAM(carrier, "<carrier>", "Network carrier name for the device.")
 
 #undef CFG_FLAG
 #undef CFG_PARAM

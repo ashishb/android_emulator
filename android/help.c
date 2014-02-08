@@ -1545,6 +1545,13 @@ help_mnc(stralloc_t* out)
 }
 
 static void
+help_carrier(stralloc_t* out)
+{
+    PRINTF(
+    " Use -carrier to specify custom network carrier name for the device.\n");
+}
+
+static void
 help_force_32bit(stralloc_t* out)
 {
     PRINTF(

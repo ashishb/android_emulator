@@ -23,6 +23,8 @@ char imsi[IMSI_LENGTH + 1];
 char mcc[MCC_LENGTH + 1];
 #define MNC_LENGTH 3 // Max length of MNC, excluding the '\0' char.
 char mnc[MNC_LENGTH + 1];
+#define CARRIER_NAME_LENGTH 100 // Max length of carrier name, excluding '\0'
+char carrier_name[CARRIER_NAME_LENGTH + 1];
 
 /** MODEM OBJECT
  **/

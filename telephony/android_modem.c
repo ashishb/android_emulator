@@ -490,8 +490,8 @@ amodem_reset( AModem  modem )
     modem->area_code = -1;
     modem->cell_id   = -1;
 
-    strcpy( modem->operators[0].name[0], OPERATOR_HOME_NAME );
-    strcpy( modem->operators[0].name[1], OPERATOR_HOME_NAME );
+    strcpy( modem->operators[0].name[0], carrier_name);
+    strcpy( modem->operators[0].name[1], carrier_name);
     sprintf( modem->operators[0].name[2], "%s%s", mcc, mnc);
 
     modem->operators[0].status        = A_STATUS_AVAILABLE;
