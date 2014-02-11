@@ -1031,6 +1031,29 @@ int main(int argc, char **argv)
       strncpy(carrier_name, opts->carrier, CARRIER_NAME_LENGTH + 1);
     }
 
+    if (opts->phone_number) {
+      char *c;
+      int i = 0;
+      for (c = opts->phone_number; *c != '\0'; c++) {
+        if ((*c >= '0') && (*c <= '9')) {
+          if (i >= MAX_PHONE_NUMBER_LENGTH) {
+            derror("Decimal digits in phone number cannot be more than "
+                "%d characters.", MAX_PHONE_NUMBER_LENGTH);
+            exit(1);
+          }
+          phone_number[i] = *c;
+          i++;
+        } else {
+          // Ignore the chars like '+', '-' etc.
+        }
+      }
+      while (i < MAX_PHONE_NUMBER_LENGTH) {
+        phone_number[i] = 'f';
+        i++;
+      }
+      phone_number[MAX_PHONE_NUMBER_LENGTH] = '\0';
+    }
+
     if (opts->memory) {
         char*  end;
         long   ramSize = strtol(opts->memory, &end, 0);

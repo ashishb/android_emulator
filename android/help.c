@@ -1552,6 +1552,15 @@ help_carrier(stralloc_t* out)
 }
 
 static void
+help_phone_number(stralloc_t* out)
+{
+    PRINTF(
+    " Use -phone_number to specify custom phone number for the device.\n"
+    " Everything except decimal digits will be ignored, so, feel free to pass "
+    " +1-(512)-745-1234 as phone number.");
+}
+
+static void
 help_force_32bit(stralloc_t* out)
 {
     PRINTF(

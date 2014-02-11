@@ -25,6 +25,8 @@ char mcc[MCC_LENGTH + 1];
 char mnc[MNC_LENGTH + 1];
 #define CARRIER_NAME_LENGTH 100 // Max length of carrier name, excluding '\0'
 char carrier_name[CARRIER_NAME_LENGTH + 1];
+#define MAX_PHONE_NUMBER_LENGTH 20  // Excluding the '\0'char.
+char phone_number[MAX_PHONE_NUMBER_LENGTH + 1];
 
 /** MODEM OBJECT
  **/
