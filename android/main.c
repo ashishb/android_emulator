@@ -973,6 +973,8 @@ int main(int argc, char **argv)
           }
         }
         strncpy(imei, opts->imei, IMEI_LENGTH + 1); 
+    } else {
+        strncpy(imei, DEFAULT_IMEI, IMEI_LENGTH + 1);
     }
 
     if (opts->imsi) {
@@ -1005,6 +1007,8 @@ int main(int argc, char **argv)
         }
 
         strncpy(imsi, opts->imsi, IMSI_LENGTH + 1); 
+    } else {
+      strncpy(imsi, DEFAULT_IMSI, IMSI_LENGTH + 1);
     }
 
     if (opts->mcc) {
@@ -1014,7 +1018,7 @@ int main(int argc, char **argv)
       }
       strncpy(mcc, opts->mcc, MCC_LENGTH + 1);
     } else {
-      strcpy(mcc, "310");  // The earlier default value.
+      strcpy(mcc, DEFAULT_MCC);  // The earlier default value.
     }
 
     if (opts->mnc) {
@@ -1024,11 +1028,13 @@ int main(int argc, char **argv)
       }
       strncpy(mnc, opts->mnc, MNC_LENGTH + 1);
     } else {
-      strcpy(mnc, "260");  // The earlier default value.
+      strcpy(mnc, DEFAULT_MNC);  // The earlier default value.
     }
 
     if (opts->carrier) {
       strncpy(carrier_name, opts->carrier, CARRIER_NAME_LENGTH + 1);
+    } else {
+      strncpy(carrier_name, DEFAULT_CARRIER_NAME, CARRIER_NAME_LENGTH + 1);
     }
 
     if (opts->phone_number) {
@@ -1052,6 +1058,8 @@ int main(int argc, char **argv)
         i++;
       }
       phone_number[MAX_PHONE_NUMBER_LENGTH] = '\0';
+    } else {
+      strncpy(phone_number, DEFAULT_PHONE_NUMBER, MAX_PHONE_NUMBER_LENGTH + 1);
     }
 
     if (opts->memory) {

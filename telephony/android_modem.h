@@ -28,6 +28,15 @@ char carrier_name[CARRIER_NAME_LENGTH + 1];
 #define MAX_PHONE_NUMBER_LENGTH 20  // Excluding the '\0'char.
 char phone_number[MAX_PHONE_NUMBER_LENGTH + 1];
 
+#define DEFAULT_IMEI "0000" "0000" "0000" "000"
+#define DEFAULT_MCC "310"
+#define DEFAULT_MNC "260"
+#define DEFAULT_IMSI DEFAULT_MCC DEFAULT_MNC "000" "000" "000"
+#define DEFAULT_CARRIER_NAME "Android"
+// This is not completely accurate, it should have port number on which
+// emulator's QEMU port is opened as last 4 digits which defaults to 5554.
+#define DEFAULT_PHONE_NUMBER "15555215554f"
+
 /** MODEM OBJECT
  **/
 typedef struct AModemRec_*    AModem;
