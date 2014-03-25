@@ -1,0 +1,13 @@
+Features added
+1. IMEI
+2. IMSI
+3. Phone number
+4. Carrier name
+5. Android ID
+6. MCC
+7. MNC
+
+Features to be added
+8. IMEI SV
+9. Locale
+10. Telephony.db (so that custom MNC can be set)
